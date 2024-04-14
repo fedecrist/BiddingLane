@@ -1,5 +1,6 @@
 using AuctionService.Data;
 using Microsoft.EntityFrameworkCore;
+using Npgsql;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
@@ -18,5 +19,14 @@ WebApplication app = builder.Build();
 app.UseAuthorization();
 
 app.MapControllers();
+
+try
+{
+    DbInitializer.InitDb(app);
+}
+catch (Exception e)
+{
+    Console.WriteLine(e);
+}
  
 app.Run();

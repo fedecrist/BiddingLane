@@ -1,0 +1,27 @@
+# This file is used to define and run multi-container Docker applications
+
+# marks the beginning of the section where the services (containers) that 
+# make up the application are defined
+services:
+  # name of the service/container. It's using the official PostgreSQL image from Docker Hub
+  postgres:
+    # specifies the Docker image to use for the PostgreSQL service.
+    # In this case, it's pulling the official PostgreSQL image from Docker Hub
+    image: postgres
+    # specify environment variables for the container
+    environment:
+      - POSTGRES_PASSWORD=postgrespw
+    # specify port mappings between the container and the host
+    ports:
+      # map port 5432 on the host to port 5432 on the container
+      # (port 5432 is the default port for PostgreSQL)
+      - 5432:5432
+    # specify volumes to persist data
+    volumes:
+      # creates a named volume called 'pgdata' and mounts it to the directory /var/lib/postgresql/data
+      # inside the PostgreSQL container. This is used to persist the PostgreSQL database data
+      - pgdata:/var/lib/postgresql/data
+# marks the beginning of the section where named volumes are defined
+volumes:
+  # name of the named volume. It's defined to store the PostgreSQL data
+  pgdata:
