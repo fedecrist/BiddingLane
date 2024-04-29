@@ -4,6 +4,14 @@ namespace AuctionService.DTOs;
 
 public class CreateAuctionRequest
 {
+    // Auction
+    [Required]
+    public int ReservePrice { get; set; }
+    
+    [Required]
+    public DateTime AuctionEnd { get; set; }
+    
+    // Item
     [Required]
     public string Make { get; set; }
 
@@ -21,10 +29,4 @@ public class CreateAuctionRequest
 
     [Required]
     public string ImageUrl { get; set; }
-
-    [Required]
-    public int ReservePrice { get; set; }
-    
-    [Required]
-    public DateTime AuctionEnd { get; set; }
 }
