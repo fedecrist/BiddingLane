@@ -21,7 +21,18 @@ services:
       # creates a named volume called 'pgdata' and mounts it to the directory /var/lib/postgresql/data
       # inside the PostgreSQL container. This is used to persist the PostgreSQL database data
       - pgdata:/var/lib/postgresql/data
+  mongodb:
+    image: mongo
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=mongopw
+    ports:
+      - 27017:27017
+    volumes:
+      - mongodata:/var/lib/mongodb/data
 # marks the beginning of the section where named volumes are defined
 volumes:
   # name of the named volume. It's defined to store the PostgreSQL data
   pgdata:
+  # Mongo data
+  mongodata:
